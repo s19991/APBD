@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using c03.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace c03.DAL
 {
@@ -12,15 +13,39 @@ namespace c03.DAL
         {
             _students = new List<Student>
             {
-                new Student(IdStudent = 1, FirstName = "Jan", LastName = "Kowalski"),
-                new Student(IdStudent = 2, FirstName = "Anna", LastName = "Andrzejewicz"),
-                new Student(IdStudent = 3, FirstName = "Andrzej", LastName = "Andrzejewicz")
+                new Student
+                {
+                    IdStudent = 1, 
+                    IndexNumber = "s003",
+                    FirstName = "Jan", 
+                    LastName = "Kowalski",
+                    BirthDate = new DateTime(1990, 2, 3),
+                    IdEnrollment = 1
+                },
+                new Student
+                {
+                    IdStudent = 2,
+                    IndexNumber = "s002",
+                    FirstName = "Anna", 
+                    LastName = "Annowicz",
+                    BirthDate = new DateTime(1990, 1, 18),
+                    IdEnrollment = 2
+                },
+                new Student
+                {
+                    IdStudent = 3,
+                    IndexNumber = "s003",
+                    FirstName = "Andrzej",
+                    LastName = "Andrzejewicz",
+                    BirthDate = new DateTime(1990, 11, 12),
+                    IdEnrollment = 3
+                }
             };
         }
 
         public IEnumerable<Student> GetStudents()
         {
-            return;
+            return _students;
         }
     }
 }
