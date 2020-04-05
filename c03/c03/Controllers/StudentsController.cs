@@ -14,9 +14,9 @@ namespace c03.Controllers
     {
         private readonly IDbService _dbService;
         private readonly string _connectionString = "Data Source=db-mssql.pjwstk.edu.pl; " 
-                                          + "Initial Catalog=s19991; " 
-                                          + "User Id=apbds19991;"
-                                          + " Password=admin";
+                                                    + "Initial Catalog=s19991; " 
+                                                    + "User Id=apbds19991;"
+                                                    + " Password=admin";
         public StudentsController(IDbService dbService)
         {
             _dbService = dbService;
