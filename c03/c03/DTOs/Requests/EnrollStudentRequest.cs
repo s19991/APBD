@@ -22,7 +22,5 @@ namespace c03.DTOs.Requests
 
         [Required]
         public string Studies { get; set; }
-
-        public int Semester { get; set; } 
     }
 }

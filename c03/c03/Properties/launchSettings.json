@@ -20,19 +20,11 @@
     "c03": {
       "commandName": "Project",
       "launchBrowser": false,
-      "launchUrl": "api/students",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-    "c05": {
-      "commandName": "Project",
-      "launchBrowser": false,
       "launchUrl": "api/enrollments",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }  
+      }
     }
   }
 }

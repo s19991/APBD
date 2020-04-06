@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using c03.DTOs.Requests;
+using c03.DTOs.Responses;
 using c03.Models;
 
 namespace c03.DAL
@@ -46,6 +48,16 @@ namespace c03.DAL
         public IEnumerable<Student> GetStudents()
         {
             return _students;
+        }
+
+        public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PromoteStudentResponse PromoteStudent(PromoteStudentRequest request)
+        {
+            throw new NotImplementedException();
         }
     }
 }

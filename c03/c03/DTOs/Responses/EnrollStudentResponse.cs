@@ -8,6 +8,7 @@ namespace c03.DTOs.Responses
 
         public int Semester { get; set; }
 
-        public DateTime StartDate { get; set; }    
+        public DateTime StartDate { get; set; }
+
     }
 }

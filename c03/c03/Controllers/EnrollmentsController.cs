@@ -1,12 +1,9 @@
 using System;
-using System.Data.SqlClient;
-using System.Linq.Expressions;
-using System.Net;
+using System.Data.SqlTypes;
 using c03.DAL;
 using c03.DTOs.Requests;
 using c03.DTOs.Responses;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace c03.Controllers
 {
@@ -15,13 +12,8 @@ namespace c03.Controllers
     [ApiController]
     public class EnrollmentsController : ControllerBase
     {
-        // todo zadanie 3 -> przeniesc calosc do osobnej klasy
         private readonly IDbService _dbService;
-        private readonly string _connectionString = "Data Source=db-mssql.pjwstk.edu.pl; " 
-                                                    + "Initial Catalog=s19991; " 
-                                                    + "User Id=apbds19991;"
-                                                    + " Password=admin";
-
+        
         public EnrollmentsController(IDbService dbService)
         {
             _dbService = dbService;
@@ -30,91 +22,45 @@ namespace c03.Controllers
         [HttpPost]
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
-            EnrollStudentResponse response;
-            using (var connection = new SqlConnection(_connectionString))
-            using (var command = new SqlCommand())
+            EnrollStudentResponse studentResponse;
+            IActionResult response;
+            try
             {
-                command.Connection = connection;
-                connection.Open();
-                var transaction = connection.BeginTransaction();
-                
-                Console.WriteLine($"Looking for studies {request.Studies}");
-                command.CommandText = "select IdStudies from studies where name=@name";
-                command.Parameters.AddWithValue("name", request.Studies);
-                var reader = command.ExecuteReader();
-                if (!reader.HasRows)
-                {
-                    transaction.Rollback();
-                    return BadRequest($"Unknown studies {request.Studies}");
-                }
-
-                Console.WriteLine($"Looking for enrollment {request.Studies}");
-                int idStudies = (int) reader["IdStudies"];
-                int idEnrollment = _getIdEnrollment(command, idStudies);
-                if (idEnrollment == 0)
-                {
-                    Console.WriteLine($"Adding enrollment for {request.Studies}");
-                    _insertIntoEnrollments(command, idStudies);
-                    idEnrollment = _getIdEnrollment(command, idStudies);
-                }
-
-                Console.WriteLine($"Checking if student {request.IndexNumber} exists");
-                command.CommandText = "select * from Student where IndexNumber=@indexnumber";
-                command.Parameters.AddWithValue("indexnumber", request.IndexNumber);
-                reader = command.ExecuteReader();
-                if (!reader.HasRows)
-                {
-                    transaction.Rollback();
-                    return BadRequest($"Student {request.Studies} exists");
-                }
-
-                command.CommandText = "insert into Student(IndexNumber, FirstName, LastName, BirthDate, IdEnrollment) " 
-                                      + "values (@indexnumber, @firstname, @lastname, @birthdate, @idenrollment)";
-                command.Parameters.AddWithValue("indexnumber", request.IndexNumber);
-                command.Parameters.AddWithValue("firstname", request.Firstname);
-                command.Parameters.AddWithValue("lastname", request.LastName);
-                command.Parameters.AddWithValue("birthdate", request.BirthDate);
-                command.Parameters.AddWithValue("idenrollment", idEnrollment);
-                command.ExecuteReader();
-
-                response = new EnrollStudentResponse()
-                {
-                    LastName = request.LastName,
-                    Semester = 1,
-                    StartDate = DateTime.Now
-                };
-                transaction.Commit();
+                studentResponse = _dbService.EnrollStudent(request);
+                response = Created("Student enrolled succesfully", studentResponse);
+            }
+            catch (ArgumentException e)
+            {
+                response = BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                response = BadRequest($"Some other error occured {e.StackTrace}");
             }
 
-            return Created("Student enrolled succesfully", response);
+            return response;
         }
 
         [HttpPost("promotions")]
         public IActionResult PromoteStudent(PromoteStudentRequest request)
         {
-            //todo sprawdzanie czy w enrollment sa rekordy dla request(studies, semester) -> inaczej 404 not found
-            //todo napisac procedurke w bazie i jej odpalenie dopisac tutaj
-            return Ok();
-        }
+            PromoteStudentResponse studentResponse;
+            IActionResult response;
+            try
+            {
+                studentResponse = _dbService.PromoteStudent(request);
+                response = Created("Student promoted succesfully", studentResponse);
+            }
+            catch (SqlNullValueException e)
+            {
+                response = NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                response = BadRequest($"Some other error occured {e.StackTrace}");
+            }
 
-        private int _getIdEnrollment(SqlCommand command, int idStudies)
-        {
-            command.CommandText = "select IdEnrollment from Enrollment " 
-                                  + "where semester = 1 and idstudy = @idstudies and StartDate = "
-                                  + "(select max(StartDate) from Enrollment " 
-                                  + " where semester = 1 and IdStudy = @idstudies)";
-            command.Parameters.AddWithValue("idstudies", idStudies); 
-            var reader = command.ExecuteReader();     
-            int idEnrollment = reader.HasRows ? int.Parse(reader["IdEnrollment"].ToString()) : 0;
-            return idEnrollment;
-        }
-
-        private void _insertIntoEnrollments(SqlCommand command, int idStudies)
-        {
-            command.CommandText = "insert into Enrollment(IDENROLLMENT, SEMESTER, IDSTUDY, STARTDATE) "
-                                  + "values ((select count(*)+1 from Enrollment), 1, @idstudies, getdate())";
-            command.Parameters.AddWithValue("idstudies", idStudies);
-            command.ExecuteReader();
+            return response;
         }
     }
 }
