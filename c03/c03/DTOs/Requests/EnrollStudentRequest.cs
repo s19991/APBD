@@ -6,6 +6,7 @@ namespace c03.DTOs.Requests
 {
     public class EnrollStudentRequest
     {
+        [Required]
         [RegularExpression("^s[0-9]+$")]
         public string IndexNumber { get; set; }
 

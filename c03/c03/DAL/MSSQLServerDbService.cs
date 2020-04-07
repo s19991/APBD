@@ -35,35 +35,43 @@ namespace c03.DAL
                 command.Transaction = transaction; 
                 
                 Console.WriteLine($"Looking for studies {request.Studies}");
-                command.CommandText = "select IdStudies from studies where name=@name";
+                command.CommandText = "select IdStudy from studies where name=@name";
                 command.Parameters.AddWithValue("name", request.Studies);
                 var reader = command.ExecuteReader();
+                command.Parameters.Clear();
                 if (!reader.HasRows)
                 {
+                    reader.Close();
                     transaction.Rollback();
                     throw new ArgumentException($"Unknown studies {request.Studies}");
                 }
 
                 Console.WriteLine($"Looking for enrollment {request.Studies}");
-                int idStudies = (int) reader["IdStudies"];
-                int idEnrollment = _getIdEnrollment(command, idStudies);
+                reader.Read();
+                int idStudy = (int) reader["IdStudy"];
+                reader.Close();
+                
+                int idEnrollment = _getIdEnrollment(command, idStudy);
                 if (idEnrollment == 0)
                 {
                     Console.WriteLine($"Adding enrollment for {request.Studies}");
-                    _insertIntoEnrollments(command, idStudies);
-                    idEnrollment = _getIdEnrollment(command, idStudies);
+                    _insertIntoEnrollments(command, idStudy);
+                    idEnrollment = _getIdEnrollment(command, idStudy);
                 }
 
                 Console.WriteLine($"Checking if student {request.IndexNumber} exists");
                 command.CommandText = "select * from Student where IndexNumber=@indexnumber";
                 command.Parameters.AddWithValue("indexnumber", request.IndexNumber);
                 reader = command.ExecuteReader();
+                command.Parameters.Clear();
                 if (reader.HasRows)
                 {
+                    reader.Close();
                     transaction.Rollback();
                     throw new ArgumentException($"Student {request.Studies} exists");
                 }
 
+                reader.Close();
                 command.CommandText = "insert into Student(IndexNumber, FirstName, LastName, BirthDate, IdEnrollment) " 
                                       + "values (@indexnumber, @firstname, @lastname, @birthdate, @idenrollment)";
                 command.Parameters.AddWithValue("indexnumber", request.IndexNumber);
@@ -71,14 +79,15 @@ namespace c03.DAL
                 command.Parameters.AddWithValue("lastname", request.LastName);
                 command.Parameters.AddWithValue("birthdate", request.BirthDate);
                 command.Parameters.AddWithValue("idenrollment", idEnrollment);
-                command.ExecuteReader();
-
+                reader = command.ExecuteReader();
+                command.Parameters.Clear();
                 response = new EnrollStudentResponse()
                 {
                     LastName = request.LastName,
                     Semester = 1,
                     StartDate = DateTime.Now
                 };
+                reader.Close();
                 transaction.Commit();
             }
 
@@ -88,7 +97,8 @@ namespace c03.DAL
         public PromoteStudentResponse PromoteStudent(PromoteStudentRequest request)
         {
             PromoteStudentResponse response = new PromoteStudentResponse();
-
+            response.Enrollments = new List<object>();
+            
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand())
             {
@@ -104,19 +114,24 @@ namespace c03.DAL
                 command.Parameters.AddWithValue("name", request.Studies);
                 command.Parameters.AddWithValue("semester", request.Semester);
                 var reader = command.ExecuteReader();
+                command.Parameters.Clear();
                 if (!reader.HasRows)
                 {
+                    reader.Close();
                     transaction.Rollback();
                     throw new SqlNullValueException(
                         $"Couldn't find students on {request.Studies} {request.Semester}"
                         );
                 }
-
+                reader.Close();
+    
                 Console.WriteLine($"Executing stored procedure");
                 command.CommandText = "exec promote_students @studies_name, @semester";
                 command.Parameters.AddWithValue("studies_name", request.Studies);
                 command.Parameters.AddWithValue("semester", request.Semester);
                 command.ExecuteNonQuery();
+                command.Parameters.Clear();
+
                 
                 Console.WriteLine($"Getting all new promoted records");
                 command.CommandText = "select e.* from enrollment e " 
@@ -125,8 +140,10 @@ namespace c03.DAL
                 command.Parameters.AddWithValue("studies_name", request.Studies);
                 command.Parameters.AddWithValue("semester", request.Semester);
                 reader = command.ExecuteReader();
+                command.Parameters.Clear();
                 if (!reader.HasRows)
                 {
+                    reader.Close();
                     transaction.Rollback();
                     throw new SqlNullValueException("Couldn't get the new records");
                 }
@@ -143,29 +160,35 @@ namespace c03.DAL
                         }
                     );
                 }
+                reader.Close();
                 transaction.Commit();
             }
 
             return response;
         }
         
-        private void _insertIntoEnrollments(SqlCommand command, int idStudies)
+        private void _insertIntoEnrollments(SqlCommand command, int idStudy)
         {
             command.CommandText = "insert into Enrollment(IDENROLLMENT, SEMESTER, IDSTUDY, STARTDATE) "
-                                  + "values ((select count(*)+1 from Enrollment), 1, @idstudies, getdate())";
-            command.Parameters.AddWithValue("idstudies", idStudies);
-            command.ExecuteReader();
+                                  + "values ((select count(*)+1 from Enrollment), 1, @id_study, getdate())";
+            command.Parameters.AddWithValue("id_study", idStudy);
+            var reader = command.ExecuteReader();
+            command.Parameters.Clear();
+            reader.Close();
         }
         
-        private int _getIdEnrollment(SqlCommand command, int idStudies)
+        private int _getIdEnrollment(SqlCommand command, int idStudy)
         {
             command.CommandText = "select IdEnrollment from Enrollment " 
-                                  + "where semester = 1 and idstudy = @idstudies and StartDate = "
+                                  + "where semester = 1 and idstudy = @id_study and StartDate = "
                                   + "(select max(StartDate) from Enrollment " 
-                                  + " where semester = 1 and IdStudy = @idstudies)";
-            command.Parameters.AddWithValue("idstudies", idStudies); 
-            var reader = command.ExecuteReader();     
+                                  + " where semester = 1 and IdStudy = @id_study)";
+            command.Parameters.AddWithValue("id_study", idStudy);
+            var reader = command.ExecuteReader();
+            command.Parameters.Clear();
+            reader.Read();
             int idEnrollment = reader.HasRows ? int.Parse(reader["IdEnrollment"].ToString()) : 0;
+            reader.Close();
             return idEnrollment;
         }
     }

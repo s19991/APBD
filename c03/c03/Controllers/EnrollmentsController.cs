@@ -35,7 +35,9 @@ namespace c03.Controllers
             }
             catch (Exception e)
             {
-                response = BadRequest($"Some other error occured {e.StackTrace}");
+                response = BadRequest(
+                    $"Some other error occured:\n[StackTrace]: {e.StackTrace}\n[Message]: {e.Message}"
+                );
             }
 
             return response;
@@ -57,7 +59,9 @@ namespace c03.Controllers
             }
             catch (Exception e)
             {
-                response = BadRequest($"Some other error occured {e.StackTrace}");
+                response = BadRequest(
+                    $"Some other error occured:\n[StackTrace]: {e.StackTrace}\n[Message]: {e.Message}"
+                    );
             }
 
             return response;
