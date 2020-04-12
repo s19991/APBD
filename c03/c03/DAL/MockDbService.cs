@@ -50,6 +50,11 @@ namespace c03.DAL
             return _students;
         }
 
+        public Student GetStudent(string indexNumber)
+        {
+            throw new NotImplementedException();
+        }
+
         public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request)
         {
             throw new NotImplementedException();

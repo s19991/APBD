@@ -1,0 +1,10 @@
+[12/04/2020 17:32:37] GET /api/students
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[12/04/2020 17:32:56] GET /doskozzza
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}

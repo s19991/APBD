@@ -191,5 +191,42 @@ namespace c03.DAL
             reader.Close();
             return idEnrollment;
         }
+
+        public Student GetStudent(string indexNumber)
+        {
+            Student student = null;
+            
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                
+                command.CommandText = "select * from student "
+                                      + "where IndexNumber = @index_number";
+                command.Parameters.AddWithValue("index_number", indexNumber);
+                var reader = command.ExecuteReader();
+                command.Parameters.Clear();
+                if (!reader.HasRows)
+                {
+                    reader.Close();
+                    return null;
+                }
+
+                while (reader.Read())
+                {
+                    student = new Student
+                    {
+                        IndexNumber = reader["IndexNumber"].ToString(),
+                        FirstName = reader["FirstName"].ToString(),
+                        LastName = reader["LastName"].ToString(),
+                        BirthDate = DateTime.Parse(reader["BirthDate"].ToString()),
+                        IdEnrollment = int.Parse(reader["IdEnrollment"].ToString())
+                    };
+                }
+            }
+
+            return student;
+        }
     }
 }
