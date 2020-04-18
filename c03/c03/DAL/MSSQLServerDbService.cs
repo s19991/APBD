@@ -228,5 +228,37 @@ namespace c03.DAL
 
             return student;
         }
+
+        public LoginResponse Login(string login, string password)
+        {
+            LoginResponse response;
+            
+            using (var connection = new SqlConnection(_connectionString))
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                
+                command.CommandText = "select * from password "
+                                      + "where StudentIndexNumber = @login " 
+                                      + "and Password = @password";
+                command.Parameters.AddWithValue("login", login);
+                command.Parameters.AddWithValue("password", password);
+                var reader = command.ExecuteReader();
+                command.Parameters.Clear();
+                if (!reader.HasRows)
+                {
+                    reader.Close();
+                    throw new Exception($"Could not login {login} user");
+                }
+
+                response = new LoginResponse
+                {
+                    message = $"{login} logged in successfuly"
+                };
+            }
+
+            return response;
+        }
     }
 }

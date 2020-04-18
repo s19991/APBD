@@ -55,6 +55,11 @@ namespace c03.DAL
             throw new NotImplementedException();
         }
 
+        public LoginResponse Login(string login, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request)
         {
             throw new NotImplementedException();

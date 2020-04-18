@@ -8,3 +8,412 @@
 	"Studies": "Informatyka",
 	"Semester": 1
 }
+[18/04/2020 18:26:59] POST /Login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:31:32] POST /Login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:31:49] POST /login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:32:00] POST /login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:32:13] POST /login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:32:41] POST /api/students
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:33:10] POST /api/students
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:33:19] POST /api/students
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:34:15] POST /api/students
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:36:39] POST /api/students
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 18:37:28] GET /api/enrollments
+
+[18/04/2020 18:37:40] GET /api/enrollments
+
+[18/04/2020 18:38:36] GET /api/students
+
+[18/04/2020 18:38:45] GET /api/students
+
+[18/04/2020 19:45:58] POST /api/enrollments
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:46:34] POST /api/enrollments
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:46:45] POST /api/enrollments
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:46:59] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:48:05] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:48:08] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:50:28] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:52:02] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:52:22] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:53:04] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:53:18] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:53:35] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:53:47] POST /api/enrollments/login
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[18/04/2020 19:54:42] POST /api/enrollments/login
+{
+	"Login": "fabians"
+}
+[18/04/2020 19:54:47] POST /api/enrollments/login
+{
+	"Login": "fabians"
+}
+[18/04/2020 19:55:07] POST /api/enrollments
+
+[18/04/2020 19:55:14] POST /api/enrollments
+
+[18/04/2020 19:55:34] POST /api/enrollments
+
+[18/04/2020 20:20:46] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:22:03] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:22:13] POST /api/enrollments
+
+[18/04/2020 20:22:37] POST /api/enrollments
+
+[18/04/2020 20:22:47] POST /api/enrollments
+
+[18/04/2020 20:23:44] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:24:03] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:24:40] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:46:55] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:47:10] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:47:18] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:47:20] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:47:33] POST /api/enrollments/login
+{
+	"Login": "s0000",
+	"Password": "s0001"
+}
+[18/04/2020 20:47:38] POST /api/enrollments/login
+{
+	"Login": "s0000",
+	"Password": "s0001"
+}
+[18/04/2020 20:47:42] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:48:24] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:48:28] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:48:39] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:48:43] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:48:53] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:52:41] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:52:56] POST /api/enrollments
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:53:07] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:53:42] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:53:48] POST /api/enrollments
+{
+	
+}
+[18/04/2020 20:53:56] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 20:54:29] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 20:55:45] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:55:52] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 20:56:33] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 20:56:37] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:56:47] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 20:58:18] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 20:58:25] POST /api/enrollments/login
+
+[18/04/2020 20:58:31] POST /api/enrollments/login
+{
+	
+}
+[18/04/2020 20:58:46] POST /api/enrollments/login
+{
+	"Login": "xD"
+}
+[18/04/2020 21:00:18] POST /api/enrollments/login
+{
+	"Login": "xD"
+}
+[18/04/2020 21:01:20] POST /api/enrollments/login
+{
+	"Login": "xD",
+	"Password": "xD"
+}
+[18/04/2020 21:01:28] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "xD"
+}
+[18/04/2020 21:01:33] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 21:01:46] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:02:01] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:02:07] GET /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:02:14] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:04:38] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 21:04:56] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 21:12:05] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 21:12:09] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:12:19] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:12:37] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:13:06] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:13:30] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:20:07] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[18/04/2020 21:20:16] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:20:26] POST /api/enrollments
+{
+	"xd"
+}
+[18/04/2020 21:22:40] POST /api/enrollments
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[18/04/2020 21:22:41] POST /api/enrollments
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[18/04/2020 21:36:43] POST /api/enrollments
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[18/04/2020 21:37:22] POST /api/enrollments
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[18/04/2020 21:37:26] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}

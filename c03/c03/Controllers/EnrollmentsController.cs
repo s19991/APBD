@@ -1,9 +1,16 @@
 using System;
 using System.Data.SqlTypes;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using c03.DAL;
 using c03.DTOs.Requests;
 using c03.DTOs.Responses;
+using c03.Middleware;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace c03.Controllers
 {
@@ -13,13 +20,15 @@ namespace c03.Controllers
     public class EnrollmentsController : ControllerBase
     {
         private readonly IDbService _dbService;
-        
-        public EnrollmentsController(IDbService dbService)
+        public IConfiguration Configuration { get; set; }
+        public EnrollmentsController(IConfiguration configuration, IDbService dbService)
         {
             _dbService = dbService;
+            Configuration = configuration;
         }
         
         [HttpPost]
+        [Authorize(Roles = "employee")]
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
             EnrollStudentResponse studentResponse;
@@ -44,6 +53,7 @@ namespace c03.Controllers
         }
 
         [HttpPost("promotions")]
+        [Authorize(Roles = "employee")]
         public IActionResult PromoteStudent(PromoteStudentRequest request)
         {
             PromoteStudentResponse studentResponse;
@@ -65,6 +75,43 @@ namespace c03.Controllers
             }
 
             return response;
+        }
+        
+        [HttpPost("login")]
+        public IActionResult Login(LoginRequest request)
+        {
+            try
+            {
+                // todo przeniesc to do osobnej klasy c07:30m
+                _dbService.Login(request.Login, request.Password);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized(e.Message);
+            }
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, request.Login),
+                new Claim(ClaimTypes.Name, "test"), 
+                new Claim(ClaimTypes.Role, "employee")
+            };
+                
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"])); 
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken
+            (
+                issuer: "s19991",
+                audience: "Employees",
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(10),
+                signingCredentials: credentials
+            );
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                refreshToken = Guid.NewGuid()
+            });
         }
     }
 }

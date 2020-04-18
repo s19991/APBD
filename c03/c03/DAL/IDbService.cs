@@ -10,7 +10,7 @@ namespace c03.DAL
         public IEnumerable<Student> GetStudents();
         public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request);
         public PromoteStudentResponse PromoteStudent(PromoteStudentRequest request);
-
         public Student GetStudent(string indexNumber);
+        public LoginResponse Login(string login, string password);
     }
 }
