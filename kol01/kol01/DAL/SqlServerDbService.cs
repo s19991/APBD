@@ -15,7 +15,6 @@ namespace kol01.DAL
         
         public GetPrescriptionsResponse GetPrescriptions(int id)
         {
-            // todo przejrzec
             GetPrescriptionsResponse response;
             
             using (var connection = new SqlConnection(_connectionString))
@@ -69,14 +68,17 @@ namespace kol01.DAL
                     }
                 }
             }
-
             return response;
         }
 
         public PostPrescriptionResponse PostPrescription(PostPrescriptionRequest request)
         {
-            // todo przejrzec
             PostPrescriptionResponse response;
+
+            if (DateTime.Compare(request.DueDate, request.Date) <= 0)
+            {
+                throw new Exception("Due date is smaller than date");
+            }
             
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand())
@@ -94,6 +96,7 @@ namespace kol01.DAL
                 {
                     if (!reader.HasRows)
                     {
+                        transaction.Rollback();
                         throw new Exception($"No doctors with IdDoctor: {request.IdDoctor}");
                     }
                 }
@@ -105,6 +108,7 @@ namespace kol01.DAL
                 {
                     if (!reader.HasRows)
                     {
+                        transaction.Rollback();
                         throw new Exception($"No patients with IdPatient: {request.IdPatient}");
                     }
                 }
@@ -115,6 +119,7 @@ namespace kol01.DAL
                 {
                     if (!reader.HasRows)
                     {
+                        transaction.Rollback();
                         throw new Exception($"Failed counting rows!");
                     }
 
