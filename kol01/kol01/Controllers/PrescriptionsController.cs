@@ -31,7 +31,7 @@ namespace kol01.Controllers
             }
             catch (Exception e)
             {
-                response = NotFound(e);
+                response = NotFound(e.Message);
             }
 
             return response;
@@ -49,7 +49,7 @@ namespace kol01.Controllers
             }
             catch (Exception e)
             {
-                response = NotFound(e);
+                response = NotFound(e.Message);
             }
 
             return response;
