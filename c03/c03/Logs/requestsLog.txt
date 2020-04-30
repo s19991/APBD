@@ -417,3 +417,135 @@
 	"Login": "s0001",
 	"Password": "s0001"
 }
+[26/04/2020 21:42:23] POST /api/login
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[26/04/2020 21:42:52] POST /api/login
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[26/04/2020 22:22:00] POST /api/enrollments
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[26/04/2020 22:22:05] POST /api/enrollments/login
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[26/04/2020 22:28:17] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[26/04/2020 22:28:41] POST /api/enrollments/
+{
+	"IndexNumber": "s0666",
+	"FirstName": "Dzialaj",
+	"LastName": "Kurrr",
+	"BirthDate": "1990-12-01",
+	"Studies": "Matematyka"
+}
+[26/04/2020 22:34:02] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:34:08] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:34:15] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:35:07] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[26/04/2020 22:35:26] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:35:42] POST /api/enrollments/
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[26/04/2020 22:35:48] POST /api/enrollments/login
+{
+	"Login": "s0001",
+	"Password": "s0001"
+}
+[26/04/2020 22:37:59] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:38:04] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:38:07] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:38:11] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[26/04/2020 22:38:15] POST /api/enrollments
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}

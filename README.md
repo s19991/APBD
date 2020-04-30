@@ -11,5 +11,9 @@ c03 - Ćwiczenia trzecie, czwarte, piąte, szóste, siódme
 
 c08 - Próbne kolokwium
 
+kol01 - Kolokwium 1
+
+LinqConsoleApp - Ćwiczenia dziewiąte
+
 
 

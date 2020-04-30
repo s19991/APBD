@@ -42,7 +42,7 @@ namespace c03
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidIssuer = "s19991",
-                        ValidAudience = "Employees",
+                        ValidAudience = "employees",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
                     };
                 });

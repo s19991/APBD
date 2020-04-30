@@ -77,19 +77,21 @@ namespace c03.Controllers
             return response;
         }
         
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
             try
             {
-                // todo przeniesc to do osobnej klasy c07:30m
                 _dbService.Login(request.Login, request.Password);
             }
             catch (Exception e)
             {
                 return Unauthorized(e.Message);
             }
-
+            
+            Console.WriteLine($"Logged in {request.Login}");
+            
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, request.Login),
@@ -102,11 +104,12 @@ namespace c03.Controllers
             var token = new JwtSecurityToken
             (
                 issuer: "s19991",
-                audience: "Employees",
+                audience: "employees",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(10),
                 signingCredentials: credentials
             );
+            
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
