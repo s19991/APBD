@@ -192,6 +192,7 @@ namespace LinqConsoleApp
         public void Przyklad1()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n1");
+            Console.WriteLine("SELECT * FROM Emps WHERE Job = 'Backend programmer';");
             //var res = new List<Emp>();
             //foreach(var emp in Emps)
             //{
@@ -222,8 +223,9 @@ namespace LinqConsoleApp
         public void Przyklad2()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n2");
+            Console.WriteLine("SELECT * FROM Emps Job = 'Frontend programmer' AND Salary>1000 ORDER BY Ename DESC;");
             var res = from emp in Emps
-                where emp.Job == "Backend programmer" && emp.Salary > 1000 
+                where emp.Job == "Frontend programmer" && emp.Salary > 1000 
                 orderby emp.Ename descending 
                 select new
                 {
@@ -245,6 +247,7 @@ namespace LinqConsoleApp
         public void Przyklad3()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n3");
+            Console.WriteLine("SELECT MAX(Salary) FROM Emps;");
             var res = Emps.Max(emp => emp.Salary);
             Console.WriteLine(res);
         }
@@ -255,6 +258,7 @@ namespace LinqConsoleApp
         public void Przyklad4()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n4");
+            Console.WriteLine("SELECT * FROM Emps WHERE Salary=(SELECT MAX(Salary) FROM Emps)");
             var max = Emps.Max(emp => emp.Salary);
             var res = from emp in Emps
                 where emp.Salary == max 
@@ -277,6 +281,7 @@ namespace LinqConsoleApp
         public void Przyklad5()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n5");
+            Console.WriteLine("SELECT ename AS Nazwisko, job AS Praca FROM Emps;");
             var res = from emp in Emps
                 select new
                 {
@@ -294,12 +299,19 @@ namespace LinqConsoleApp
         public void Przyklad6()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n6");
-            var res = Emps
-                .Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
+            Console.WriteLine("SELECT Emps.Ename, Emps.Job, Depts.Dname FROM Emps INNER JOIN Depts ON Emps.Deptno=Depts.Deptno");
+            var res = from joined in Emps
+                    .Join(Depts, emp => emp.Deptno, dept => dept.Deptno, (emp, dept) => new
+                    {
+                        emp,
+                        dept
+                    })
+                select new
                 {
-                    emp,
-                    dept
-                });
+                    joined.emp.Ename,
+                    joined.emp.Job,
+                    joined.dept.Dname
+                };
             res.ToList().ForEach(x => Console.WriteLine(x));
         }
 
@@ -309,6 +321,7 @@ namespace LinqConsoleApp
         public void Przyklad7()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n7");
+            Console.WriteLine("SELECT Job AS Praca, COUNT(1) LiczbaPracownikow FROM Emps GROUP BY Job;");
             var res = from emp in Emps
                 group emp by emp.Job into jobGroup
                 select new
@@ -328,6 +341,7 @@ namespace LinqConsoleApp
         public void Przyklad8()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n8");
+            Console.WriteLine("Zwróć wartość 'true' jeśli choć jeden z elementów kolekcji pracuje jako 'Backend programmer'.");
             var job = "Backend programmer";
             bool hasJob = Emps.Any(emp => emp.Job == job);
             Console.WriteLine($"Emp contains {job}: {hasJob}");
@@ -340,6 +354,7 @@ namespace LinqConsoleApp
         public void Przyklad9()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n9");
+            Console.WriteLine("SELECT TOP 1 * FROM Emp WHERE Job='Frontend programmer' ORDER BY HireDate DESC;");
             var res = from emp in Emps
                 where emp.Job == "Frontend programmer"
                 orderby emp.HireDate descending
@@ -357,23 +372,45 @@ namespace LinqConsoleApp
         }
 
         /// <summary>
-        /// SELECT Enaclassme, Job, Hiredate FROM Emps
+        /// SELECT Ename, Job, Hiredate FROM Emps
         /// UNION
         /// SELECT "Brak wartości", null, null;
         /// </summary>
-        public void Przyklad10Button_Click()
+        public void Przyklad10()
         {
-            // todo
+            Console.WriteLine($"\n{new String('=', 10)}\n10");
+            Console.WriteLine("SELECT Ename, Job, Hiredate FROM Emps UNION SELECT 'Brak wartości', null, null;");
+            // todo sprawdzic czy to ma tak dzialac, bo nie wiem xd
+            var tmp = from emp in Emps
+                select new
+                {
+                    emp.Ename,
+                    emp.Job,
+                    emp.HireDate
+                };
+            var list = new List<Object>();
+            list.Add(new Emp()
+            {
+                Ename="Brak wartości",
+                Job=null,
+                HireDate=null
+            });
+            var res = tmp.Union(list);
+            res.ToList().ForEach(x => Console.WriteLine(x));
+
+
         }
 
         //Znajdź pracownika z najwyższą pensją wykorzystując metodę Aggregate()
         public void Przyklad11()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n11");
+            Console.WriteLine("Znajdź pracownika z najwyższą pensją wykorzystując metodę Aggregate()");
             var result = Emps
                 .Select(emp => emp.Salary)
                 .Aggregate((res, next) => res > next ? res : next);
-            Console.WriteLine(result);
+            Console.WriteLine($"Aggregate: {result}");
+            Console.WriteLine($"Max(): {Emps.Max(emp => emp.Salary)}");
         }
 
         //Z pomocą języka LINQ i metody SelectMany wykonaj złączenie
@@ -381,16 +418,22 @@ namespace LinqConsoleApp
         public void Przyklad12()
         {
             Console.WriteLine($"\n{new String('=', 10)}\n12");
-            var res = from emp in Emps
-                from dept in Depts
-                select new
-                {    
-                    emp.Empno,
-                    emp.Salary,
-                    dept.Deptno,
-                    dept.Dname,
-                    dept.Loc
-                };
+            Console.WriteLine("Z pomocą języka LINQ i metody SelectMany wykonaj złączenie typu CROSS JOIN");
+            // var res = from emp in Emps
+            //     from dept in Depts
+            //     select new
+            //     {    
+            //         emp.Empno,
+            //         emp.Salary,
+            //         dept.Deptno,
+            //         dept.Dname,
+            //         dept.Loc
+            //     };
+            var res = Emps.SelectMany(emp => Depts, (emp, dept) => new
+            {
+                emp.Ename,
+                dept.Dname
+            });
             res.ToList().ForEach(x => Console.WriteLine(x));
         }
     }
