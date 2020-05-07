@@ -7,7 +7,7 @@
 
 c02 - Ćwiczenia drugie
 
-c03 - Ćwiczenia trzecie, czwarte, piąte, szóste, siódme
+c03 - Ćwiczenia trzecie, czwarte, piąte, szóste, siódme, dziesiąte
 
 c08 - Próbne kolokwium
 
