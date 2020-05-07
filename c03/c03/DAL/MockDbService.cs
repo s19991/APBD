@@ -50,12 +50,27 @@ namespace c03.DAL
             return _students;
         }
 
+        public void ModifyStudent(ModifyStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStudent(DeleteStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public Student GetStudent(string indexNumber)
         {
             throw new NotImplementedException();
         }
 
         public LoginResponse Login(string login, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        GetStudentsResponse IDbService.GetStudents()
         {
             throw new NotImplementedException();
         }

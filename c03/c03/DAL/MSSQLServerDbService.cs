@@ -21,7 +21,22 @@ namespace c03.DAL
         {
             throw new NotImplementedException();
         }
-        
+
+        public void ModifyStudent(ModifyStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteStudent(DeleteStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        GetStudentsResponse IDbService.GetStudents()
+        {
+            throw new NotImplementedException();
+        }
+
         public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request)
         {
             EnrollStudentResponse response;

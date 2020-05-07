@@ -549,3 +549,125 @@
 	"LastName": "Paweł",
 	"BirthDate": "1990-12-25"
 }
+[07/05/2020 23:10:12] GET /api/enrollments/getsudents
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[07/05/2020 23:10:19] GET /api/enrollments/getstudents
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[07/05/2020 23:11:41] GET /api/enrollments/modifystudents
+{
+	"IndexNumber": "s2137",
+	"Studies": "Informatyka",
+	"FirstName": "Jan",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[07/05/2020 23:12:08] GET /api/enrollments/modifystudents
+{
+	"IndexNumber": "s0001",
+	"Studies": "Informatyka",
+	"FirstName": "XDD",
+	"LastName": "Paweł",
+	"BirthDate": "1990-12-25"
+}
+[07/05/2020 23:12:40] GET /api/enrollments/modifystudents
+{
+	"IndexNumber": "s0001",
+	
+}
+[07/05/2020 23:12:51] GET /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001",
+	
+}
+[07/05/2020 23:13:18] GET /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001",
+	"FirstName": "Zmieniam"
+}
+[07/05/2020 23:13:31] POST /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001",
+	"FirstName": "Zmieniam"
+}
+[07/05/2020 23:14:47] POST /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001",
+	"FirstName": "Zmieniam",
+	"LastName": "Zmieniam",
+	"BirthDate": "1990-12-06",
+	"IdEnrollment": 1
+}
+[07/05/2020 23:14:56] POST /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001",
+	"FirstName": "Zmieniam",
+	"LastName": "Zmieniam",
+	"IdEnrollment": 1
+}
+[07/05/2020 23:15:03] POST /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001",
+	"FirstName": "Zmieniam",
+	"IdEnrollment": 1
+}
+[07/05/2020 23:15:12] POST /api/enrollments/modifystudent
+{
+	"IndexNumber": "s0001"
+}
+[07/05/2020 23:16:22] POST /api/enrollments/deletestudent
+{
+	"IndexNumber": "s0001"
+}
+[07/05/2020 23:17:45] POST /api/enrollments/
+{
+	"IndexNumber": "s6666",
+	"FirstName": "Testo",
+	"LastName": "Klejnot Nilu",
+	"BirthDate" "1000-10-10",
+	"Studies": "Informatyka"
+}
+[07/05/2020 23:17:53] POST /api/enrollments/
+{
+	"IndexNumber": "s6666",
+	"FirstName": "Testo",
+	"LastName": "Klejnot Nilu",
+	"BirthDate": "1000-10-10",
+	"Studies": "Informatyka"
+}
+[07/05/2020 23:18:53] POST /api/enrollments/promotions
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[07/05/2020 23:20:34] POST /api/enrollments/promotions
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[07/05/2020 23:20:40] POST /api/enrollments/promotions
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[07/05/2020 23:20:42] POST /api/enrollments/promotions
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}
+[07/05/2020 23:34:37] POST /api/enrollments/promotions
+{
+	"Studies": "Informatyka",
+	"Semester": 1
+}

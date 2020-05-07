@@ -7,10 +7,12 @@ namespace c03.DAL
 {
     public interface IDbService
     {
-        public IEnumerable<Student> GetStudents();
+        public Student GetStudent(string indexNumber);
+        public GetStudentsResponse GetStudents();
+        public void ModifyStudent(ModifyStudentRequest request);
+        public void DeleteStudent(DeleteStudentRequest request);
         public EnrollStudentResponse EnrollStudent(EnrollStudentRequest request);
         public PromoteStudentResponse PromoteStudent(PromoteStudentRequest request);
-        public Student GetStudent(string indexNumber);
         public LoginResponse Login(string login, string password);
     }
 }

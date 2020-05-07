@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using c03.DAL;
+using c03.EntityModels;
 using c03.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,8 +48,14 @@ namespace c03
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
                     };
                 });
-            
-            services.AddSingleton<IDbService, MSSQLServerDbService>();
+
+            services.AddScoped<IDbService, EfDbService>();
+            services.AddDbContext<s19991Context>(options =>
+            {
+                options.UseSqlServer(
+                    "Data Source=db-mssql.pjwstk.edu.pl; Initial Catalog=s19991; User Id=apbds19991; Password=admin");
+            });
+            // services.AddSingleton<IDbService, MSSQLServerDbService>();
             services.AddControllers();
 
             services.AddSwaggerGen(

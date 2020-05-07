@@ -28,9 +28,9 @@ namespace c03.Controllers
         }
         
         [HttpPost]
-        [Authorize(Roles = "employee")]
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
+            // todo napisac na EF
             EnrollStudentResponse studentResponse;
             IActionResult response;
             try
@@ -53,9 +53,9 @@ namespace c03.Controllers
         }
 
         [HttpPost("promotions")]
-        [Authorize(Roles = "employee")]
         public IActionResult PromoteStudent(PromoteStudentRequest request)
         {
+            // todo napisac na EF
             PromoteStudentResponse studentResponse;
             IActionResult response;
             try
@@ -74,6 +74,53 @@ namespace c03.Controllers
                     );
             }
 
+            return response;
+        }
+
+        [HttpGet("getstudents")]
+        public IActionResult GetStudents()
+        {
+            IActionResult response;
+            
+            try
+            {
+                response = Ok(_dbService.GetStudents());
+            }
+            catch (Exception e)
+            {
+                response = BadRequest(e);
+            }
+            
+            return response;
+        }
+        
+        [HttpPost("modifystudent")]
+        public IActionResult ModifyStudent(ModifyStudentRequest request)
+        {
+            IActionResult response = Ok($"Successfully modified {request.IndexNumber}");
+            try
+            {
+                _dbService.ModifyStudent(request);
+            }
+            catch (Exception e)
+            {
+                response = BadRequest(e);
+            }
+            return response;
+        }
+        
+        [HttpPost("deletestudent")]
+        public IActionResult DeleteStudent(DeleteStudentRequest request)
+        {
+            IActionResult response = Ok($"Successfully deleted {request.IndexNumber}");
+            try
+            {
+                _dbService.DeleteStudent(request);
+            }
+            catch (Exception e)
+            {
+                response = BadRequest(e);
+            }
             return response;
         }
         
