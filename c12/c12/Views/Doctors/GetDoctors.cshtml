@@ -1,0 +1,46 @@
+@model IEnumerable<c12.Models.Doctors>
+@{
+    Layout = "../Shared/_Layout";
+}
+
+<p1>
+    <table>
+        <thead>
+        <th>
+            @Html.DisplayNameFor(x => x.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(x => x.LastName)
+        </th>        
+        </thead>
+        <tbody>
+        @foreach (var doctor in Model)
+        {
+            <tr>
+                <td>
+                    @doctor.FirstName
+                </td>
+                <td>
+                    @doctor.LastName
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table> 
+</p1>
+
+<!-- todo tu musi byc create / dac do innej pliku cshtml-->
+<form method="post" action="/doctors/getdoctors">
+    
+    <div class="row">
+        <div class="input-field col s6">
+            <input placeholder="First Name" id="first_name" type="text" class="validate" name="FirstName">
+            <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="Last Name" id="last_name" type="text" class="validate" name="LastName">
+            <label for="last_name">Last Name</label>
+        </div>
+    </div>
+    <input type="submit" value="Send" class="btn"/>
+</form>
