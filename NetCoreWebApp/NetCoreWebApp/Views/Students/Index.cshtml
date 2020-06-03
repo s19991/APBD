@@ -1,0 +1,32 @@
+﻿@model IEnumerable<StudentViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List of students</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Lastname</th>
+            <th>Firstname</th>
+            <th>Address</th>
+            <th>Average grade</th>
+            <th>ECTS points sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.LastName</td>
+                <td>@i.FirstName</td>
+                <td>@i.Address</td>
+                <td>@i.AverageGrade</td>
+                <td>@i.EctsSum</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a asp-action="Create">Dodaj studenta</a>
