@@ -20,7 +20,7 @@ namespace AdvertApi.Controllers
             return Ok();
         }
 
-        public IActionResult GetCampaigns(GetCampaignsRequest request)
+        public IActionResult GetCampaigns()
         {
             // todo 7 Lista kampanii
             return Ok();
