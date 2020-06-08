@@ -1,4 +1,5 @@
 using AdvertApi.DTO.Requests;
+using AdvertApi.DTO.Responses;
 
 namespace AdvertApi.DAL
 {
@@ -8,7 +9,7 @@ namespace AdvertApi.DAL
 
         public void LoginUser(LoginUserRequest request);
 
-        public void GetCampaigns();
+        public GetCampaignsResponse GetCampaigns();
 
         public void CreateCampaign(CreateCampaignRequest request);
     }

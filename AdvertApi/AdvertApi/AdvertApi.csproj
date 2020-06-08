@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="DTO\Responses" />
       <Folder Include="Models" />
     </ItemGroup>
 
