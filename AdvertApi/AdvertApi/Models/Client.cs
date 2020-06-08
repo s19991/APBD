@@ -17,6 +17,7 @@ namespace AdvertApi.Models
         public string Phone { get; set; }
         public string Login { get; set; }
 
+        public virtual Password Password { get; set; }
         public virtual ICollection<Campaign> Campaign { get; set; }
     }
 }

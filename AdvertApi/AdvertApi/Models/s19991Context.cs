@@ -19,6 +19,7 @@ namespace AdvertApi.Models
         public virtual DbSet<Building> Building { get; set; }
         public virtual DbSet<Campaign> Campaign { get; set; }
         public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<Password> Password { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -125,6 +126,25 @@ namespace AdvertApi.Models
                 entity.Property(e => e.Phone)
                     .IsRequired()
                     .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Password>(entity =>
+            {
+                entity.HasKey(e => e.IdClient)
+                    .HasName("Password_pk");
+
+                entity.Property(e => e.IdClient).ValueGeneratedNever();
+
+                entity.Property(e => e.Password1)
+                    .IsRequired()
+                    .HasColumnName("Password")
+                    .HasMaxLength(100);
+
+                entity.HasOne(d => d.IdClientNavigation)
+                    .WithOne(p => p.Password)
+                    .HasForeignKey<Password>(d => d.IdClient)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Password_Client");
             });
 
             OnModelCreatingPartial(modelBuilder);
