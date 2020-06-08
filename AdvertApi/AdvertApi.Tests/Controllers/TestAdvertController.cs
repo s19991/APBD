@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using AdvertApi.Controllers;
+using AdvertApi.DAL;
 using AdvertApi.DTO.Requests;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 
 namespace AdvertApi.Tests.Controllers
 {
@@ -13,7 +15,9 @@ namespace AdvertApi.Tests.Controllers
         [SetUp]
         public void Setup()
         {
-            _advertController = new AdvertController();
+            var dbLayer = new Mock<IDbService>();
+            // todo ustalenie return value na dbLayer
+            _advertController = new AdvertController(dbLayer.Object);
         }
 
         [Test]
