@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
@@ -48,6 +49,16 @@ namespace AdvertApi.DAL
 
         public void CreateCampaign(CreateCampaignRequest request)
         {
+            if (!_context.Client.Any(c => c.IdClient == request.IdClient))
+            {
+                throw new KeyNotFoundException($"Couldn't find client: {request.IdClient}");
+            }
+            
+            // todo sprawdzanie czy podane budynki sa na tej samej ulicy -> else 400
+            // todo obliczanie kosztu reklamy
+            // todo szukanie dobrego rozmiaru banerow
+            // todo dodawanie danych do DB
+            // todo zwracanie stworzonej kampanii 201
             throw new System.NotImplementedException();
         }
     }
