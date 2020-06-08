@@ -56,3 +56,14 @@ alter table Campaign add constraint Campaign_From_Building
 alter table Campaign add constraint Campaign_To_Building
     foreign key (ToIdBuilding)
     references Building (IdBuilding);
+
+-- passwords
+create table Password(
+    IdClient int not null,
+    Password nvarchar(100) not null,
+    constraint Password_pk primary key (IdClient)
+)
+
+ALTER TABLE Password ADD CONSTRAINT Password_Client
+    FOREIGN KEY (IdCLient)
+    REFERENCES Client (IdClient);
