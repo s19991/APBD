@@ -51,10 +51,22 @@ namespace AdvertApi.DAL
         {
             if (!_context.Client.Any(c => c.IdClient == request.IdClient))
             {
-                throw new KeyNotFoundException($"Couldn't find client: {request.IdClient}");
+                throw new KeyNotFoundException($"Couldn't find client [{request.IdClient}]");
             }
             
-            // todo sprawdzanie czy podane budynki sa na tej samej ulicy -> else 400
+            var fromBuildingStreet = _context.Building
+                .Single(b => b.IdBuilding == request.FromIdBuilding)
+                .Street;
+            var toBuildingStreet = _context.Building
+                .Single(b => b.IdBuilding == request.ToIdBuilding)
+                .Street;
+            if (!fromBuildingStreet.Equals(toBuildingStreet))
+            {
+                throw new ArgumentException(
+                    $"Buildings [{request.FromIdBuilding}] and [{request.ToIdBuilding}] are not on the same street"
+                    );
+            }
+            
             // todo obliczanie kosztu reklamy
             // todo szukanie dobrego rozmiaru banerow
             // todo dodawanie danych do DB
