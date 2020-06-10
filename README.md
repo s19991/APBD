@@ -15,5 +15,14 @@ kol01 - Kolokwium 1
 
 LinqConsoleApp - Ćwiczenia dziewiąte
 
+c11 - Ćwiczenia jedenaste
+
+c12 - Ćwiczenia dwunaste
+
+NetCoreWebApp - Ćwiczenia trzynaste
+
+AdvertApi - Projekt
+
+
 
 
