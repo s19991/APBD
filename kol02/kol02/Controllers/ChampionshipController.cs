@@ -1,7 +1,6 @@
 using System;
 using kol02.DAL;
 using kol02.DTO.Requests;
-using kol02.DTO.Responses;
 using kol02.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,8 +24,7 @@ namespace kol02.Controllers
             IActionResult response;
             try
             {
-                GetTeamsResponse teams = _service.GetTeams(championshipId);
-                response = Ok(teams);
+                response = Ok(_service.GetTeams(championshipId));
             }
             catch (ChampionshipDoesntExistException e)
             {
@@ -47,7 +45,7 @@ namespace kol02.Controllers
             try
             {
                 _service.AddPlayerToTeam(teamId, request);
-                response = Ok();
+                response = Created($"Added player to {teamId}", request);
             }
             catch (PlayerIsToOldException e)
             {
